@@ -29,11 +29,11 @@ export default function HeroBtn({
   useEffect(() => {
     const newParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
-      x: Math.random() * 360 - 180,
-      y: Math.random() * 360 - 180,
+      x: Math.random() * (attractRadius * 2) - attractRadius,
+      y: Math.random() * (attractRadius * 2) - attractRadius,
     }));
     setParticles(newParticles);
-  }, [particleCount]);
+  }, [particleCount, attractRadius]);
 
   const handleInteractionStart = useCallback(async () => {
     setIsAttracting(true);
@@ -50,15 +50,18 @@ export default function HeroBtn({
 
   const handleInteractionEnd = useCallback(async () => {
     setIsAttracting(false);
-    await particlesControl.start((i) => ({
-      x: particles[i].x,
-      y: particles[i].y,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    }));
+    // Ensure particles array is not empty and i is a valid index
+    if (particles.length > 0) {
+      await particlesControl.start((i) => ({
+        x: particles[i]?.x ?? 0, // Use optional chaining and nullish coalescing for safety
+        y: particles[i]?.y ?? 0, // Use optional chaining and nullish coalescing for safety
+        transition: {
+          type: "spring",
+          stiffness: 100,
+          damping: 15,
+        },
+      }));
+    }
   }, [particlesControl, particles]);
 
   return (
@@ -78,20 +81,25 @@ export default function HeroBtn({
       onTouchEnd={handleInteractionEnd}
       {...props}
     >
-      {particles.map((_, index) => (
-        <motion.div
-          key={index}
-          custom={index}
-          initial={{ x: particles[index].x, y: particles[index].y }}
-          animate={particlesControl}
-          className={cn(
-            "absolute w-1.5 h-1.5 rounded-full",
-            "bg-violet-400 dark:bg-violet-300",
-            "transition-opacity duration-300",
-            isAttracting ? "opacity-100" : "opacity-40"
-          )}
-        />
-      ))}
+      {particles.map(
+        (
+          particle,
+          index // Changed _ to particle for clarity
+        ) => (
+          <motion.div
+            key={particle.id} // Use particle.id for a more stable key
+            custom={index}
+            initial={{ x: particle.x, y: particle.y }}
+            animate={particlesControl}
+            className={cn(
+              "absolute w-1.5 h-1.5 rounded-full",
+              "bg-violet-400 dark:bg-violet-300",
+              "transition-opacity duration-300",
+              isAttracting ? "opacity-100" : "opacity-40"
+            )}
+          />
+        )
+      )}
       <span className="relative w-full flex items-center justify-center gap-2">
         {isAttracting ? "Start Exploring" : "Start Exploring"}
       </span>
