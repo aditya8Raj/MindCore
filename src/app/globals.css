@@ -66,7 +66,13 @@
       background-position: calc(100% + var(--shiny-width)) 0;
     }
   }
-}
+  --animate-line-shadow: line-shadow 15s linear infinite
+;
+  @keyframes line-shadow {
+  0% {
+    background-position: 0 0;}
+  100% {
+    background-position: 100% -100%;}}}
 
 :root {
   --radius: 0.625rem;

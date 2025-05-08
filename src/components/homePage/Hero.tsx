@@ -19,6 +19,7 @@ import heroImg from "../../../public/hero_img.png";
 import heroBgImg from "../../../public/hero-bg-img.jpg";
 import Image from "next/image";
 import { AnimatedShinyText } from "../magicui/animated-shiny-text";
+import { LineShadowText } from "../magicui/line-shadow-text";
 
 const transitionVariants = {
   item: {
@@ -41,6 +42,8 @@ const transitionVariants = {
 };
 
 export function Hero() {
+  const theme = useTheme();
+  const shadowColor = theme.resolvedTheme === "dark" ? "white" : "black";
   return (
     <>
       <HeroHeader />
@@ -120,7 +123,13 @@ export function Hero() {
                   </Link>
 
                   <h1 className="mt-8 max-w-4xl mx-auto text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]">
-                    AI-ready data in minutes with MindRag.
+                    AI-ready data in minutes with{" "}
+                    <LineShadowText
+                      className="italic"
+                      shadowColor={shadowColor}
+                    >
+                      MindRag
+                    </LineShadowText>
                   </h1>
                   <p className="mx-auto mt-8 max-w-2xl text-balance text-lg">
                     Convert raw data into clean, machine-friendly formats —
