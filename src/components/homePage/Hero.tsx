@@ -248,10 +248,10 @@ export function Hero() {
               <div className="flex">
                 <Image
                   className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/column.svg"
-                  alt="Column Logo"
-                  height="16"
-                  width="16"
+                  src="https://html.tailus.io/blocks/customers/stripe.svg"
+                  alt="Stripe Logo"
+                  height="24"
+                  width="24"
                 />
               </div>
 
@@ -259,8 +259,8 @@ export function Hero() {
               <div className="flex">
                 <Image
                   className="mx-auto h-5 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/nike.svg"
-                  alt="Nike Logo"
+                  src="https://html.tailus.io/blocks/customers/tailwindcss.svg"
+                  alt="TailwindCSS Logo"
                   height="20"
                   width="20"
                 />
@@ -270,8 +270,8 @@ export function Hero() {
               <div className="flex">
                 <Image
                   className="mx-auto h-5 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                  alt="Lemon Squeezy Logo"
+                  src="https://html.tailus.io/blocks/customers/vercel.svg"
+                  alt="Vercel Logo"
                   height="20"
                   width="20"
                 />
@@ -292,10 +292,10 @@ export function Hero() {
               <div className="flex">
                 <Image
                   className="mx-auto h-7 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/lilly.svg"
-                  alt="Lilly Logo"
-                  height="28"
-                  width="28"
+                  src="https://html.tailus.io/blocks/customers/zapier.svg"
+                  alt="Zapier Logo"
+                  height="20"
+                  width="20"
                 />
               </div>
 
